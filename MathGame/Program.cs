@@ -17,8 +17,9 @@ namespace MathGame
 
             Console.WriteLine($"\nWelcome, {name}!");
 
-            MainMenu();
+            int score = 0;
 
+            MainMenu();
 
             // Methods
             void MainMenu()
@@ -28,7 +29,10 @@ namespace MathGame
                 S - Subtraction
                 M - Multiplication
                 D - Division
-                Q - Quit");
+                Q - Quit
+
+                Current score = {score}");
+
                 Console.WriteLine("----------------------------------");
 
                 var selection = Console.ReadLine();
@@ -72,7 +76,7 @@ namespace MathGame
 
                 while (keepPlaying)
                 {
-                    count += 1;
+                    count++;
                     
                     var random = new Random();
                     int firstNumber = random.Next(1, 9);
@@ -84,12 +88,13 @@ namespace MathGame
                     if (int.Parse(result) == firstNumber + secondNumber)
                     {
                         Console.WriteLine("Correct!");
-                        numCorrect += 1;
+                        numCorrect++;
+                        score++;
                     }
                     else
                     {
                         Console.WriteLine("Incorrect! Try Again!");
-                        numIncorrect += 1;
+                        numIncorrect++;
                     }
 
                     Console.Write("Play again? (Y/N): ");
@@ -119,7 +124,7 @@ namespace MathGame
 
                 while (keepPlaying)
                 {
-                    count += 1;
+                    count++;
                     
                     var random = new Random();
                     int firstNumber = random.Next(1, 9);
@@ -129,6 +134,103 @@ namespace MathGame
                     var result = Console.ReadLine();
 
                     if (int.Parse(result) == firstNumber - secondNumber)
+                    {
+                        Console.WriteLine("Correct!");
+                        numCorrect++;
+                        score++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect! Try Again!");
+                        numIncorrect++;
+                    }
+
+                    Console.Write("Play again? (Y/N): ");
+                    var keepGoing = Console.ReadLine();
+
+                    if (keepGoing.ToLower().Trim() == "y")
+                    {
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Games played: {count}");
+                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                        keepPlaying = false;
+                        MainMenu();
+                    }
+                }
+            }
+
+            void Multiplication(string message)
+            {
+                Console.WriteLine($"\n{message}");
+                int count = 0;
+                int numCorrect = 0;
+                int numIncorrect = 0;
+                Boolean keepPlaying = true;
+
+                while (keepPlaying)
+                {
+                    count++;
+
+                    var random = new Random();
+                    int firstNumber = random.Next(1, 9);
+                    int secondNumber = random.Next(1, 9);
+
+                    Console.WriteLine($"{firstNumber} * {secondNumber}?");
+                    var result = Console.ReadLine();
+
+                    if (int.Parse(result) == firstNumber * secondNumber)
+                    {
+                        Console.WriteLine("Correct!");
+                        numCorrect++;
+                        score++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect! Try Again!");
+                        numIncorrect++;
+                    }
+
+                    Console.Write("Play again? (Y/N): ");
+                    var keepGoing = Console.ReadLine();
+
+                    if (keepGoing.ToLower().Trim() == "y")
+                    {
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Games played: {count}");
+                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                        keepPlaying = false;
+                        MainMenu();
+                    }
+                }
+            }
+
+            void Division(string message)
+            {
+                Console.WriteLine($"\n{message}");
+                int count = 0;
+                int numCorrect = 0;
+                int numIncorrect = 0;
+                Boolean keepPlaying = true;
+
+                while (keepPlaying)
+                {
+                    count += 1;
+
+                    var random = new Random();
+                    int[] numbers = GetNiceDivisionNumbers();
+                    int firstNumber = numbers[0];
+                    int secondNumber = numbers[1];
+
+                    Console.WriteLine($"{firstNumber} / {secondNumber}?");
+                    var result = Console.ReadLine();
+
+                    if (int.Parse(result) == firstNumber / secondNumber)
                     {
                         Console.WriteLine("Correct!");
                         numCorrect += 1;
@@ -156,20 +258,30 @@ namespace MathGame
                 }
             }
 
-            void Multiplication(string message)
+            // Get evenly divisible integers
+            int[] GetNiceDivisionNumbers()
             {
-                Console.WriteLine($"\n{message}");
-            }
+                int[] numbers = new int[2];
+                var random = new Random();
+                int firstNumber = random.Next(1, 99);
+                int secondNumber = random.Next(1, 99);
+                
+                while (firstNumber % secondNumber != 0)
+                {
+                    firstNumber = random.Next(1, 99);
+                    secondNumber = random.Next(1, 99);
+                }
 
-            void Division(string message)
-            {
-                Console.WriteLine($"\n{message}");
+                numbers[0] = firstNumber;
+                numbers[1] = secondNumber;
+
+                return numbers;
             }
 
             void QuitGame()
             {
                 Console.WriteLine("\nThanks for playing!");
-                Thread.Sleep(5000);
+                Thread.Sleep(2000);
                 Environment.Exit(1);
             }
         }
