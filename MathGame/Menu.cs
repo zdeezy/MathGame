@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathGame
 {
@@ -11,7 +7,6 @@ namespace MathGame
         internal static void ShowMenu()
         {
             var game = new GameLogic();
-            var games = new List<string>();
 
             Console.WriteLine($@"What game would you like to play?
                 A - Addition

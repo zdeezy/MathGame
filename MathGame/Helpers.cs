@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathGame
 {
     internal class Helpers
     {
-        static List<string> games = new List<string>();
+        static List<string> games = new();
 
         internal static int[] GetNiceDivisionNumbers()
         {

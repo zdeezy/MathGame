@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MathGame
 {
@@ -205,7 +200,7 @@ namespace MathGame
         {
             Console.WriteLine("Thanks for playing!");
             Thread.Sleep(2000);
-            Environment.Exit(1);
+            Environment.Exit(0);
         }
     }
 }
