@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace MathGame
 {
@@ -15,7 +16,9 @@ namespace MathGame
             Console.WriteLine("Welcome to the math game!\n");
             string name = GetName();
 
-            Console.WriteLine($"\nWelcome, {name}!");
+            var games = new List<string>();
+
+            Console.WriteLine($"\nWelcome, {name}!\n");
 
             int score = 0;
 
@@ -29,29 +32,33 @@ namespace MathGame
                 S - Subtraction
                 M - Multiplication
                 D - Division
-                Q - Quit
-
-                Current score = {score}");
-
+                H - Game History
+                Q - Quit");
                 Console.WriteLine("----------------------------------");
 
                 var selection = Console.ReadLine();
 
+                Console.Clear();
+
                 if (selection.ToLower().Trim() == "a")
                 {
-                    Addition("Addition game selected!");
+                    Addition("Addition game!");
                 }
                 else if (selection.ToLower().Trim() == "s")
                 {
-                    Subtraction("Subraction game selected!");
+                    Subtraction("Subraction game!");
                 }
                 else if (selection.ToLower().Trim() == "m")
                 {
-                    Multiplication("Multiplication game selected!");
+                    Multiplication("Multiplication game!");
                 }
                 else if (selection.ToLower().Trim() == "d")
                 {
-                    Division("Division game selected!");
+                    Division("Division game!");
+                }
+                else if (selection.ToLower().Trim() == "h")
+                {
+                    GetGameHistory();
                 }
                 else
                 {
@@ -68,16 +75,15 @@ namespace MathGame
 
             void Addition(string message)
             {
-                Console.WriteLine($"\n{message}");
-                int count = 0;
+                Console.Clear();
+                Console.WriteLine($"{message}");
+
                 int numCorrect = 0;
                 int numIncorrect = 0;
-                Boolean keepPlaying = true;
+                int rounds = 9;
 
-                while (keepPlaying)
+                for (int i = 0; i < 10; i++)
                 {
-                    count++;
-                    
                     var random = new Random();
                     int firstNumber = random.Next(1, 9);
                     int secondNumber = random.Next(1, 9);
@@ -97,35 +103,34 @@ namespace MathGame
                         numIncorrect++;
                     }
 
-                    Console.Write("Play again? (Y/N): ");
-                    var keepGoing = Console.ReadLine();
+                    Console.WriteLine($"Keep Going! {rounds} rounds left!");
+                    Console.WriteLine("Press enter to continue: ");
+                    Console.ReadLine();
 
-                    if (keepGoing.ToLower().Trim() == "y")
-                    {
-                        Console.Clear();                        
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Games played: {count}");
-                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
-                        keepPlaying = false;
-                        MainMenu();
-                    }                    
-                }                
+                    rounds--;
+
+                    Console.Clear();                    
+                }
+
+                UpdateGameHistory("Addition", score);
+                Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                Console.WriteLine("Press enter to go to the main menu.");
+                Console.ReadLine();
+                Console.Clear();
+                MainMenu();
             }
 
             void Subtraction(string message)
             {
-                Console.WriteLine($"\n{message}");
-                int count = 0;
+                Console.Clear();
+                Console.WriteLine($"{message}");
+
                 int numCorrect = 0;
                 int numIncorrect = 0;
-                Boolean keepPlaying = true;
+                int rounds = 9;
 
-                while (keepPlaying)
+                for (int i = 0; i < 10; i++)
                 {
-                    count++;
-                    
                     var random = new Random();
                     int firstNumber = random.Next(1, 9);
                     int secondNumber = random.Next(1, 9);
@@ -145,35 +150,34 @@ namespace MathGame
                         numIncorrect++;
                     }
 
-                    Console.Write("Play again? (Y/N): ");
-                    var keepGoing = Console.ReadLine();
+                    Console.WriteLine($"Keep Going! {rounds} rounds left!");
+                    Console.WriteLine("Press enter to continue: ");
+                    Console.ReadLine();
 
-                    if (keepGoing.ToLower().Trim() == "y")
-                    {
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Games played: {count}");
-                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
-                        keepPlaying = false;
-                        MainMenu();
-                    }
+                    rounds--;
+
+                    Console.Clear();
                 }
+
+                UpdateGameHistory("Subtraction", score);
+                Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                Console.WriteLine("Press enter to go to the main menu.");
+                Console.ReadLine();
+                Console.Clear();
+                MainMenu();
             }
 
             void Multiplication(string message)
             {
-                Console.WriteLine($"\n{message}");
-                int count = 0;
+                Console.Clear();
+                Console.WriteLine($"{message}");
+
+                int rounds = 9;
                 int numCorrect = 0;
                 int numIncorrect = 0;
-                Boolean keepPlaying = true;
 
-                while (keepPlaying)
+                for (int i = 0; i < 10; i++)
                 {
-                    count++;
-
                     var random = new Random();
                     int firstNumber = random.Next(1, 9);
                     int secondNumber = random.Next(1, 9);
@@ -193,36 +197,34 @@ namespace MathGame
                         numIncorrect++;
                     }
 
-                    Console.Write("Play again? (Y/N): ");
-                    var keepGoing = Console.ReadLine();
+                    Console.WriteLine($"Keep Going! {rounds} rounds left!");
+                    Console.WriteLine("Press enter to continue: ");
+                    Console.ReadLine();
 
-                    if (keepGoing.ToLower().Trim() == "y")
-                    {
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Games played: {count}");
-                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
-                        keepPlaying = false;
-                        MainMenu();
-                    }
+                    rounds--;
+
+                    Console.Clear();
                 }
+
+                UpdateGameHistory("Multiplication", score);
+                Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                Console.WriteLine("Press enter to go to the main menu.");
+                Console.ReadLine();
+                Console.Clear();
+                MainMenu();
             }
 
             void Division(string message)
             {
-                Console.WriteLine($"\n{message}");
-                int count = 0;
+                Console.Clear();
+                Console.WriteLine($"{message}");
+
+                int rounds = 9;
                 int numCorrect = 0;
                 int numIncorrect = 0;
-                Boolean keepPlaying = true;
 
-                while (keepPlaying)
+                for (int i = 0; i < 10; i++)
                 {
-                    count += 1;
-
-                    var random = new Random();
                     int[] numbers = GetNiceDivisionNumbers();
                     int firstNumber = numbers[0];
                     int secondNumber = numbers[1];
@@ -234,6 +236,7 @@ namespace MathGame
                     {
                         Console.WriteLine("Correct!");
                         numCorrect += 1;
+                        score++;
                     }
                     else
                     {
@@ -241,21 +244,22 @@ namespace MathGame
                         numIncorrect += 1;
                     }
 
-                    Console.Write("Play again? (Y/N): ");
-                    var keepGoing = Console.ReadLine();
+                    Console.WriteLine($"Keep Going! {rounds} rounds left!");
+                    Console.WriteLine("Press enter to continue: ");
 
-                    if (keepGoing.ToLower().Trim() == "y")
-                    {
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Games played: {count}");
-                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
-                        keepPlaying = false;
-                        MainMenu();
-                    }
+                    rounds--;
+
+                    Console.ReadLine();
+
+                    Console.Clear();
                 }
+
+                UpdateGameHistory("Subtraction", score);
+                Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                Console.WriteLine("Press enter to go to the main menu.");
+                Console.ReadLine();
+                Console.Clear();
+                MainMenu();
             }
 
             // Get evenly divisible integers
@@ -278,9 +282,30 @@ namespace MathGame
                 return numbers;
             }
 
+            void GetGameHistory()
+            {
+                Console.WriteLine("Games Played");
+                Console.WriteLine("------------");
+
+                foreach (string game in games)
+                {
+                    Console.WriteLine(game);
+                }
+
+                Console.WriteLine("Press enter to go back to the main menu.");
+                Console.ReadLine();
+                Console.Clear();
+                MainMenu();
+            }
+
+            void UpdateGameHistory(string gameType, int gamescore)
+            {
+                games.Add($"Game Type: {gameType}, score = {score}");
+            }
+
             void QuitGame()
             {
-                Console.WriteLine("\nThanks for playing!");
+                Console.WriteLine("Thanks for playing!");
                 Thread.Sleep(2000);
                 Environment.Exit(1);
             }
