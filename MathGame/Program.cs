@@ -65,13 +65,15 @@ namespace MathGame
             void Addition(string message)
             {
                 Console.WriteLine($"\n{message}");
-                int count = 1;
+                int count = 0;
+                int numCorrect = 0;
+                int numIncorrect = 0;
+                Boolean keepPlaying = true;
 
-                while (true)
+                while (keepPlaying)
                 {
-                    count++;
-                    int numCorrect = 0;
-                    int numIncorrect = 0;
+                    count += 1;
+                    
                     var random = new Random();
                     int firstNumber = random.Next(1, 9);
                     int secondNumber = random.Next(1, 9);
@@ -82,12 +84,12 @@ namespace MathGame
                     if (int.Parse(result) == firstNumber + secondNumber)
                     {
                         Console.WriteLine("Correct!");
-                        numCorrect++;
+                        numCorrect += 1;
                     }
                     else
                     {
                         Console.WriteLine("Incorrect! Try Again!");
-                        numIncorrect++;
+                        numIncorrect += 1;
                     }
 
                     Console.Write("Play again? (Y/N): ");
@@ -100,7 +102,8 @@ namespace MathGame
                     else
                     {
                         Console.WriteLine($"Games played: {count}");
-                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!");
+                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                        keepPlaying = false;
                         MainMenu();
                     }                    
                 }                
@@ -109,6 +112,48 @@ namespace MathGame
             void Subtraction(string message)
             {
                 Console.WriteLine($"\n{message}");
+                int count = 0;
+                int numCorrect = 0;
+                int numIncorrect = 0;
+                Boolean keepPlaying = true;
+
+                while (keepPlaying)
+                {
+                    count += 1;
+                    
+                    var random = new Random();
+                    int firstNumber = random.Next(1, 9);
+                    int secondNumber = random.Next(1, 9);
+
+                    Console.WriteLine($"{firstNumber} - {secondNumber}?");
+                    var result = Console.ReadLine();
+
+                    if (int.Parse(result) == firstNumber - secondNumber)
+                    {
+                        Console.WriteLine("Correct!");
+                        numCorrect += 1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect! Try Again!");
+                        numIncorrect += 1;
+                    }
+
+                    Console.Write("Play again? (Y/N): ");
+                    var keepGoing = Console.ReadLine();
+
+                    if (keepGoing.ToLower().Trim() == "y")
+                    {
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Games played: {count}");
+                        Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
+                        keepPlaying = false;
+                        MainMenu();
+                    }
+                }
             }
 
             void Multiplication(string message)
