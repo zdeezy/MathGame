@@ -1,11 +1,12 @@
-﻿using System;
+﻿using MathGame.Models;
+using System;
 using System.Collections.Generic;
 
 namespace MathGame
 {
     internal class Helpers
     {
-        static List<string> games = new();
+        internal static List<Game> games = new();
 
         internal static int[] GetNiceDivisionNumbers()
         {
@@ -31,9 +32,9 @@ namespace MathGame
             Console.WriteLine("Games Played");
             Console.WriteLine("------------");
 
-            foreach (string game in games)
+            foreach (var game in games)
             {
-                Console.WriteLine(game);
+                Console.WriteLine($"{game.Date} - {game.Type}: Score = {game.Score}");
             }
 
             Console.WriteLine("Press enter to go back to the main menu.");
@@ -44,7 +45,12 @@ namespace MathGame
 
         internal static void UpdateGameHistory(string gameType, int gamescore)
         {
-            games.Add($"{DateTime.Now} - Date, Game Type: {gameType}, score = {gamescore}");
+            games.Add(new Game
+            {
+                Date = DateTime.Now,
+                Score = gamescore,
+                Type = gameType,
+            });
         }
     }
 }
