@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using MathGame.Models;
 
 namespace MathGame
 {
@@ -46,7 +47,7 @@ namespace MathGame
                 Console.Clear();
             }
 
-            Helpers.UpdateGameHistory("Addition", score);
+            Helpers.UpdateGameHistory(GameType.Addition, score);
             Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
             Console.WriteLine("Press enter to go to the main menu.");
             Console.ReadLine();
@@ -93,7 +94,7 @@ namespace MathGame
                 Console.Clear();
             }
 
-            Helpers.UpdateGameHistory("Subtraction", score);
+            Helpers.UpdateGameHistory(GameType.Subtraction, score);
             Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
             Console.WriteLine("Press enter to go to the main menu.");
             Console.ReadLine();
@@ -140,7 +141,7 @@ namespace MathGame
                 Console.Clear();
             }
 
-            Helpers.UpdateGameHistory("Multiplication", score);
+            Helpers.UpdateGameHistory(GameType.Multiplication, score);
             Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
             Console.WriteLine("Press enter to go to the main menu.");
             Console.ReadLine();
@@ -188,7 +189,7 @@ namespace MathGame
                 Console.Clear();
             }
 
-            Helpers.UpdateGameHistory("Subtraction", score);
+            Helpers.UpdateGameHistory(GameType.Division, score);
             Console.WriteLine($"You got {numCorrect} correct and {numIncorrect} wrong!\n");
             Console.WriteLine("Press enter to go to the main menu.");
             Console.ReadLine();

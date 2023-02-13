@@ -43,7 +43,7 @@ namespace MathGame
             Menu.ShowMenu();
         }
 
-        internal static void UpdateGameHistory(string gameType, int gamescore)
+        internal static void UpdateGameHistory(GameType gameType, int gamescore)
         {
             games.Add(new Game
             {
